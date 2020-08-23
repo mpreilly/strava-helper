@@ -1,0 +1,36 @@
+#mileage-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#current-week {
+    background-color: #8bc73c;
+    height: 20%;
+    text-align: center;
+    padding: 2em;
+    border-radius: 1em;
+}
+
+#table-container {
+    border: 1px solid black;
+    border-radius: 1em;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    border-collapse: collapse;
+    padding: 0.5em;
+}
+
+th {
+    padding: 0.5em;
+}
+
+td {
+    width: 10em;
+    height: 2em;
+    text-align: center;
+    border-top: 1px solid black;
+}

@@ -1,0 +1,16 @@
+#activities-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#activities-container > a {
+    text-decoration: none;
+    color: black;
+}
+
+.activity {
+    padding: 1em;
+    margin: 1em;
+    background-color: #fcb103;
+    border-radius: 1em;
+}
