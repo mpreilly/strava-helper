@@ -1,4 +1,21 @@
 <h2>Weekly Mileage</h2>
+<div id="week-days">
+    <table id='week-table'>
+        <tr>
+            <th>{{startOnMonday ? "Monday" : "Sunday"}}</th>
+            <th>{{startOnMonday ? "Tuesday" : "Monday"}}</th>
+            <th>{{startOnMonday ? "Wednesday" : "Tuesday"}}</th>
+            <th>{{startOnMonday ? "Thursday" : "Wednesday"}}</th>
+            <th>{{startOnMonday ? "Friday" : "Thursday"}}</th>
+            <th>{{startOnMonday ? "Saturday" : "Friday"}}</th>
+            <th>{{startOnMonday ? "Sunday" : "Saturday"}}</th>
+        </tr>
+        <tr>
+            <td *ngFor="let activity of currentWeek">{{ activity != null ? (activity.distance | number : '1.0-2') : 0 }}</td>
+        </tr>
+    </table>
+</div>
+
 <div id="mileage-container">
     <div id='table-container'>
         <table id='mileage-table'>
@@ -6,16 +23,31 @@
                 <th>Week</th>
                 <th>Mileage</th>
             </tr>
-            <tr *ngFor="let week of weeklyMileage">
+            <tr *ngFor="let week of weeklyMileage.slice(0, 8)">
                 <td>{{week.startDate.toLocaleDateString()}}</td>
                 <td>{{week.mileage.toFixed(2)}}</td>
             </tr>
         </table>
     </div>
-    <div id="current-week">
-        <h3>Current Week's Mileage</h3>
-        <h4>{{weeklyMileage[0].mileage.toFixed(2)}}</h4>
+
+    <div id="right-container">
+        <div id="current-week">
+            <h3>Current Week's Mileage</h3>
+            <h4>{{weeklyMileage[0].mileage.toFixed(2)}}</h4>
+        </div>
+        <div>
+            <div style="display: block">
+                <canvas baseChart
+                        [datasets]="barChartData"
+                        [labels]="barChartLabels"
+                        [options]="barChartOptions"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType">
+                </canvas>
+            </div>
+        </div>
     </div>
+
 </div>
 
 

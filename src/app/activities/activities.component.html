@@ -5,7 +5,7 @@
     <div id="activities-container">
         <a *ngFor="let activity of activities" href="https://www.strava.com/activities/{{activity.id}}" target="blank">
             <div class="activity">
-                {{activity.name}}: {{(activity.distance * 0.000621371).toFixed(2)}} miles in {{activity.moving_time > 60 * 60 ? (activity.moving_time * 1000 | date:'H:mm:ss':'UTC') : (activity.moving_time * 1000 | date:'mm:ss':'UTC')}}
+                {{activity.name}}: {{activity.distance.toFixed(2)}} miles in {{activity.moving_time > 60 * 60 ? (activity.moving_time * 1000 | date:'H:mm:ss':'UTC') : (activity.moving_time * 1000 | date:'mm:ss':'UTC')}}
             </div>
         </a>
     </div>

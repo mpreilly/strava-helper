@@ -15,7 +15,7 @@ export class ActivitiesService {
     const activitiesUrl = 'https://www.strava.com/api/v3/athlete/activities';
     const options = {
       headers: {
-        Authorization: "Bearer 202eddf478cf9053c76f3525735eb25dc8669dec",
+        Authorization: "Bearer 63d256c68c5c5f6fe3bce7498e88115443d53658",
       },
       params: new HttpParams().set('per_page', '60')
     };

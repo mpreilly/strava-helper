@@ -11,6 +11,12 @@
     border-radius: 1em;
 }
 
+#right-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
 #table-container {
     border: 1px solid black;
     border-radius: 1em;
@@ -19,18 +25,37 @@
     justify-content: center;
 }
 
-table {
+#mileage-table {
     border-collapse: collapse;
     padding: 0.5em;
 }
 
-th {
+#mileage-table th {
     padding: 0.5em;
 }
 
-td {
+#mileage-table td {
     width: 10em;
     height: 2em;
     text-align: center;
     border-top: 1px solid black;
+}
+
+#week-table {
+    padding: 0.5em;
+    margin: 1em;
+    border-collapse: collapse;
+}
+
+#week-table th {
+    padding: 0 1em;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+#week-table td {
+    padding: 2em;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    text-align: center;
 }
