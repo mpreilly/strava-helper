@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ActivitiesComponent } from './activities/activities.component';
 import { WeekViewComponent } from './week-view/week-view.component';
+import { R2wActivitiesComponent } from './r2w-activities/r2w-activities.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ActivitiesComponent,
-    WeekViewComponent
+    WeekViewComponent,
+    R2wActivitiesComponent
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@ import { FullActivity } from './full-activity';
 })
 export class ActivitiesService {
 
+  // TODO: use environment variable for auth! (until actual auth flow at least)
   getActivities(): Observable<FullActivity[]> {
     const activitiesUrl = 'https://www.strava.com/api/v3/athlete/activities';
     const options = {
