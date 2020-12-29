@@ -39,6 +39,21 @@ export function readActivitiesFromR2WFile(fileData: string): R2WActivity[] {
             let r2wDate = document.querySelector(`body > div.container > form > table:nth-child(${i}) > tbody > tr > td > table > tbody > tr > td > a`).textContent;
             
             let timeOfDay = document.querySelector(`body > div.container > form > table:nth-child(${i}) > tbody > tr > td > table:nth-child(1) > tbody > tr > td:nth-child(2) > span`).textContent;
+
+            // turn "Friday, 2/1/2019" into ['2', '1', '2019'], then into 2019-02-01
+            let dateTokens = r2wDate.split(' ')[1].split('/');
+            let isoDateTime = dateTokens[2] + '-' + dateTokens[0].padStart(2, '0') + '-' + dateTokens[1].padStart(2, '0');
+            if (timeOfDay === 'Morning') {
+                isoDateTime += 'T09:00'
+            } else if (timeOfDay === 'Afternoon') {
+                isoDateTime += 'T15:00'
+            } else if (timeOfDay === 'Evening') {
+                isoDateTime += 'T18:00'
+            } else if (timeOfDay === 'Night') {
+                isoDateTime += 'T21:00'
+            } else {
+                isoDateTime += 'T12:00'
+            }
             
             let description = document.querySelector(`body > div.container > form > table:nth-child(${i}) > tbody > tr > td > table:nth-child(2) > tbody > tr:nth-child(3) > td:nth-child(2)`).textContent;
 
@@ -91,7 +106,7 @@ export function readActivitiesFromR2WFile(fileData: string): R2WActivity[] {
                 'stringTime': stringTime,
                 'secondsTime': secondsTime,
                 'r2wDate': r2wDate,
-                'dateTime': '',
+                'dateTime': isoDateTime,
                 'timeOfDay': timeOfDay,
                 'description': description,
                 'activityType': activityType,
