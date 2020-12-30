@@ -14,6 +14,11 @@ export function readActivitiesFromR2WFile(fileData: string): R2WActivity[] {
         } else {
             nullsInARow = 0;
 
+            let notRunningMiles = document.querySelector(`body > div.container > form > table:nth-child(${i}) > tbody > tr > td > table:nth-child(2) > tbody > tr:nth-child(2) > td:nth-child(2) > i > span`);
+            if (notRunningMiles && notRunningMiles.textContent.includes('Not running miles') || result.textContent.includes('--')) {
+                continue;
+            }
+
             const tokens = result.textContent.trim().split(" ");
             let stringDistance = tokens[0] + " " + tokens[1]
 
