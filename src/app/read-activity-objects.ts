@@ -20,6 +20,8 @@ export function readActivitiesFromR2WFile(fileData: string): R2WActivity[] {
             let meterDistance: number;
             if (tokens[1] === "Meters") {
                 meterDistance = +tokens[0];
+            } else if (tokens[1] === "Kilometers") {
+                meterDistance = +tokens[0] * 1000
             } else {
                 meterDistance = +tokens[0] * 1609.34
             }
