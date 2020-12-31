@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { readActivitiesFromR2WFile } from '../read-activity-objects';
+import { readActivitiesFromR2WFile, makeRaceInfoString, makeWorkoutString } from '../read-activity-objects';
 import { R2WActivity, RaceInfo, WorkoutSet } from '../r2w-activity';
+import { ActivitiesService } from '../activities.service';
 
 @Component({
   selector: 'app-r2w-activities',
@@ -11,7 +12,7 @@ export class R2wActivitiesComponent implements OnInit {
   fileToUpload: File = null;
   activities: R2WActivity[];
 
-  constructor() { }
+  constructor(private activitesService: ActivitiesService) { }
 
   ngOnInit(): void {
   }
@@ -24,16 +25,17 @@ export class R2wActivitiesComponent implements OnInit {
     });
   }
 
-  makeWorkoutString(workoutSets: WorkoutSet[]): string {
-    let workoutString = 'Workout:\n\n';
-    workoutSets.forEach(set => {
-      workoutString += `Set ${set.setNum}: ${set.numReps} x ${set.distance} @ ${set.goal}\n${set.actual}\nRep rest ${set.repRest}${set.setRest ? ', Set rest ' + set.setRest : '' } \n\n`;
-    });
-    return workoutString;
+  uploadActivities(): void {
+    console.log('calling upload');
+    this.activitesService.uploadActivities(this.activities);
   }
 
-  makeRaceInfoString(raceInfo: RaceInfo): string {
-    return `Race: ${raceInfo.raceName}\nDistance: ${raceInfo.distance}\nTime: ${raceInfo.time}\nSplits: ${raceInfo.splits}\nPlace: ${raceInfo.place}\nRace Description: ${raceInfo.comments}`;
+  getWorkoutString(workoutSets: WorkoutSet[]): string {
+    return makeWorkoutString(workoutSets);
+  }
+
+  getRaceInfoString(raceInfo: RaceInfo): string {
+    return makeRaceInfoString(raceInfo);
   }
 
 }

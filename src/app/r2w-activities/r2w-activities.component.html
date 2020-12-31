@@ -5,13 +5,16 @@
            id="file"
            (change)="handleFileInput($event.target.files)">
 </div>
+<div *ngIf="activities">
+    <button (click)="uploadActivities()">Upload</button>
+</div>
 <div >
     <div *ngFor="let activity of activities">
         <h2>{{activity.r2wDate}}</h2>
         <h3>{{activity.stringDistance}} in {{activity.stringTime}}</h3>
         <p>{{activity.description}}</p>
         <div *ngIf="activity.workoutSets && activity.workoutSets.length">
-            <pre>{{makeWorkoutString(activity.workoutSets)}}</pre>
+            <pre>{{getWorkoutString(activity.workoutSets)}}</pre>
             <!-- <h3>Workout</h3>
             <table>
                 <tr>
@@ -35,7 +38,7 @@
             </table> -->
         </div>
         <div *ngIf="activity.raceInfo">
-            <pre>{{makeRaceInfoString(activity.raceInfo)}}</pre>
+            <pre>{{getRaceInfoString(activity.raceInfo)}}</pre>
             <!-- <h3>Race: {{activity.raceInfo.raceName}}</h3>
             <table>
                 <tr>

@@ -127,3 +127,15 @@ export function readActivitiesFromR2WFile(fileData: string): R2WActivity[] {
 
     return activities;
 }
+
+export function makeWorkoutString(workoutSets: WorkoutSet[]): string {
+    let workoutString = 'Workout:\n\n';
+    workoutSets.forEach(set => {
+        workoutString += `Set ${set.setNum}: ${set.numReps} x ${set.distance} @ ${set.goal}\n${set.actual}\nRep rest ${set.repRest}${set.setRest ? ', Set rest ' + set.setRest : '' } \n\n`;
+    });
+    return workoutString;
+}
+
+export function makeRaceInfoString(raceInfo: RaceInfo): string {
+    return `Race: ${raceInfo.raceName}\nDistance: ${raceInfo.distance}\nTime: ${raceInfo.time}\nSplits: ${raceInfo.splits}\nPlace: ${raceInfo.place}\nRace Description: ${raceInfo.comments}`;
+}
