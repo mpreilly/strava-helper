@@ -1,8 +1,8 @@
-<p>r2w-activities works!</p>
 <div class="form-group">
     <label for="file">Choose File</label>
     <input type="file"
            id="file"
+           multiple
            (change)="handleFileInput($event.target.files)">
 </div>
 <div *ngIf="activities">
@@ -10,6 +10,7 @@
 </div>
 <div >
     <div *ngFor="let activity of activities">
+        <button (click)="uploadSingleActivity(activity)" >upload single activity</button>
         <h2>{{activity.r2wDate}}</h2>
         <h3>{{activity.stringDistance}} in {{activity.stringTime}}</h3>
         <p>{{activity.description}}</p>

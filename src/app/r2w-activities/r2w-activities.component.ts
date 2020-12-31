@@ -9,8 +9,9 @@ import { ActivitiesService } from '../activities.service';
   styleUrls: ['./r2w-activities.component.css']
 })
 export class R2wActivitiesComponent implements OnInit {
-  fileToUpload: File = null;
-  activities: R2WActivity[];
+  // fileToUpload: File = null;
+  activities: R2WActivity[] = [];
+  activitiesToUpload: R2WActivity[] = [];
 
   constructor(private activitesService: ActivitiesService) { }
 
@@ -18,16 +19,27 @@ export class R2wActivitiesComponent implements OnInit {
   }
 
   handleFileInput(files: FileList): void {
-    this.fileToUpload = files.item(0);
-    this.fileToUpload.text().then(data => {
-      this.activities = readActivitiesFromR2WFile(data);
-      console.log(this.activities);
-    });
+    // this.fileToUpload = files.item(0);
+    for (let i = 0; i < files.length; i++) {
+      files.item(i).text().then(data => {
+        this.activities.push(...readActivitiesFromR2WFile(data));
+      });
+    }
+    console.log(this.activities);
+    this.activitiesToUpload = this.activities;
+    // this.fileToUpload.text().then(data => {
+    //   this.activities = readActivitiesFromR2WFile(data);
+    //   console.log(this.activities);
+    // });
   }
 
   uploadActivities(): void {
     console.log('calling upload');
     this.activitesService.uploadActivities(this.activities);
+  }
+
+  uploadSingleActivity(activity: R2WActivity): void {
+    this.activitesService.uploadActivities([activity]);
   }
 
   getWorkoutString(workoutSets: WorkoutSet[]): string {
